@@ -34,3 +34,6 @@ app.get("/update-contact", (req, res) => {
 app.post("/update-contact", (req, res) => {
   //post the contact update into db
 });
+app.get("/delete-contact", (req, res) => {
+  //contact will be deleted from db
+});
