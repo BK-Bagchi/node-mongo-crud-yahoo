@@ -26,9 +26,10 @@ app.get("/", async (req, res) => {
   // res.json(contacts); //shows data in json format
   res.render("home", { contacts });
 });
-app.get("/show-contact", (req, res) => {
+app.get("/show-contact/:id", async (req, res) => {
   //static page to show contact details
-  res.render("show-contact");
+  const contact = await Contacts.findOne({ _id: req.params.id });
+  res.render("show-contact", { contact });
 });
 app.get("/add-contact", (req, res) => {
   //form page to take contact input from user
@@ -37,13 +38,13 @@ app.get("/add-contact", (req, res) => {
 app.post("/add-contact", (req, res) => {
   //post the contact input into db
 });
-app.get("/update-contact", (req, res) => {
+app.get("/update-contact/:id", (req, res) => {
   //form page to take contact update from user
   res.render("update-contact");
 });
-app.post("/update-contact", (req, res) => {
+app.post("/update-contact/:id", (req, res) => {
   //post the contact update into db
 });
-app.get("/delete-contact", (req, res) => {
+app.get("/delete-contact/:id", (req, res) => {
   //contact will be deleted from db
 });

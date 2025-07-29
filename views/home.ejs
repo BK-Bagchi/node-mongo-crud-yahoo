@@ -41,19 +41,19 @@
                       <td><%= contact.phone %></td>
                       <td width="150">
                         <a
-                          href="/show-contact"
+                          href="/show-contact/<%= contact._id  %>"
                           class="btn btn-sm btn-circle btn-outline-info"
                           title="Show"
                           ><i class="fa fa-eye"></i
                         ></a>
                         <a
-                          href="/update-contact"
+                          href="/update-contact/<%= contact._id  %>"
                           class="btn btn-sm btn-circle btn-outline-secondary"
                           title="Edit"
                           ><i class="fa fa-edit"></i
                         ></a>
                         <a
-                          href="#"
+                          href="/delete-contact/<%= contact._id  %>"
                           class="btn btn-sm btn-circle btn-outline-danger"
                           title="Delete"
                           onclick="confirm('Are you sure?')"
