@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import Contacts from "./models/contacts.models.js";
 
 const app = express();
 const port = 3000;
@@ -19,9 +20,11 @@ mongoose.connect("mongodb://127.0.0.1:27017/contact-crud").then(() => {
 });
 
 //necessary routes
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   // home page
-  res.render("home");
+  const contacts = await Contacts.find();
+  // res.json(contacts); //shows data in json format
+  res.render("home", { contacts });
 });
 app.get("/show-contact", (req, res) => {
   //static page to show contact details

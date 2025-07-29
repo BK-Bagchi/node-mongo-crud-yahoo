@@ -32,12 +32,13 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <% contacts.forEach((contact, i) => { %>
                     <tr>
-                      <td>1</td>
-                      <td>Alfred</td>
-                      <td>Kuhlman</td>
-                      <td>alfred@test.com</td>
-                      <td>98989898</td>
+                      <td><%= i+1 %></td>
+                      <td><%= contact.firstName %></td>
+                      <td><%= contact.lastName %></td>
+                      <td><%= contact.email %></td>
+                      <td><%= contact.phone %></td>
                       <td width="150">
                         <a
                           href="/show-contact"
@@ -60,6 +61,7 @@
                         ></a>
                       </td>
                     </tr>
+                    <% }); %>
                   </tbody>
                 </table>
               </div>
