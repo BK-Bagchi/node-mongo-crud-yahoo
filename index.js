@@ -1,4 +1,6 @@
 import express from "express";
+import mongoose from "mongoose";
+
 const app = express();
 const port = 3000;
 app.listen(port, () => {
@@ -10,6 +12,11 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
+
+//database connection
+mongoose.connect("mongodb://127.0.0.1:27017/contact-crud").then(() => {
+  console.log("MongoDB database connected");
+});
 
 //necessary routes
 app.get("/", (req, res) => {
