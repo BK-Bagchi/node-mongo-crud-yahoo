@@ -38,9 +38,10 @@ app.get("/add-contact", (req, res) => {
 app.post("/add-contact", (req, res) => {
   //post the contact input into db
 });
-app.get("/update-contact/:id", (req, res) => {
+app.get("/update-contact/:id", async (req, res) => {
   //form page to take contact update from user
-  res.render("update-contact");
+  const contact = await Contacts.findOne({ _id: req.params.id });
+  res.render("update-contact", { contact });
 });
 app.post("/update-contact/:id", (req, res) => {
   //post the contact update into db
