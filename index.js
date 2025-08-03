@@ -62,6 +62,8 @@ app.post("/update-contact/:id", async (req, res) => {
 
   res.redirect("/");
 });
-app.get("/delete-contact/:id", (req, res) => {
+app.get("/delete-contact/:id", async (req, res) => {
   //contact will be deleted from db
+  const deleteData = await Contacts.findByIdAndDelete(req.params.id);
+  res.redirect("/");
 });
