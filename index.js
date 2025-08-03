@@ -41,11 +41,11 @@ app.post("/add-contact", async (req, res) => {
   //   first_name: first_name,
   //   last_name: last_name,
   //   "db_field_name": "form_field_name"
-  // }) but this can be done in a shorter and simpler way.
+  // }) //but this can be done in a shorter and simpler way.
 
   const contact = await Contacts.create(req.body);
   // in this case "db_field_name" and "form_field_name" should be the same
-  //if i'm not using the const contact anywhere else, directly "await Contacts.create(req.body)" can also be written
+  //if i'm not using the const "contact anywhere else", directly "await Contacts.create(req.body)" can also be written
   res.redirect("/");
 });
 app.get("/update-contact/:id", async (req, res) => {
@@ -53,8 +53,14 @@ app.get("/update-contact/:id", async (req, res) => {
   const contact = await Contacts.findOne({ _id: req.params.id });
   res.render("update-contact", { contact });
 });
-app.post("/update-contact/:id", (req, res) => {
+app.post("/update-contact/:id", async (req, res) => {
   //post the contact update into db
+  const id = req.params.id;
+  const updateData = req.body;
+  const updateContact = await Contacts.findByIdAndUpdate(id, updateData);
+  // const updateContact= await Contacts.findByIdAndUpdate(req.params.id, req.body) //in short
+
+  res.redirect("/");
 });
 app.get("/delete-contact/:id", (req, res) => {
   //contact will be deleted from db
