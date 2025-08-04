@@ -4,9 +4,28 @@ import mongoose from "mongoose";
 export const getFindContacts = async (req, res) => {
   // home page
   try {
-    const contacts = await Contacts.find();
+    const { page = 1, limit = 5 } = req.query;
+    // const contacts = await Contacts.find(); //old one. supports no pagination
+    const contacts = await Contacts.paginate(
+      {}, //"{}" means select *.
+      { page: page, limit: limit }
+    ); //new one. Supports pagination.
+    // res.json(contacts);
+
     if (!contacts) return res.render("404", { message: "Not data found" });
-    res.render("home", { contacts });
+    res.render("home", {
+      // all of these values come because of mongoose pagination
+      contacts: contacts.docs, // could get only this line if didn't use pagination
+      totalDocs: contacts.totalDocs,
+      currentLimit: contacts.limit,
+      totalPages: contacts.totalPages,
+      currentPage: contacts.page,
+      counter: contacts.pagingCounter,
+      hasPrevPage: contacts.hasPrevPage,
+      hasNextPage: contacts.hasNextPage,
+      prevPage: contacts.prevPage,
+      nextPage: contacts.nextPage,
+    });
   } catch (error) {
     res.render("500", { message: error });
   }

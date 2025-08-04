@@ -32,9 +32,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <% contacts.forEach((contact, i) => { %>
+                    <% contacts.forEach(contact => { %>
                     <tr>
-                      <td><%= i+1 %></td>
+                      <td><%= counter++ %></td>
                       <td><%= contact.firstName %></td>
                       <td><%= contact.lastName %></td>
                       <td><%= contact.email %></td>
@@ -64,6 +64,31 @@
                     <% }); %>
                   </tbody>
                 </table>
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-center">
+                    <% if(hasPrevPage){%>
+                    <li class="page-item" onClick="goToPrev()">
+                    <%}else{%>
+                    <li class="page-item disabled">
+                    <% }%>
+                      <a class="page-link" href="/?page=<%=prevPage%>">Previous</a>
+                    </li>
+                    
+                    <% for(let i=0; i<totalPages; i++) {%>
+                    <li class="page-item">
+                      <a class="page-link" href="/?page=<%=i+1%>"><%= i+1%></a>
+                    </li>
+                    <% } %>
+                    
+                    <% if(hasNextPage){%>
+                    <li class="page-item" onClick="goToNext()">
+                    <%}else{%>
+                    <li class="page-item disabled">
+                    <% }%>
+                      <a class="page-link" href="/?page=<%=nextPage%>">Next</a>
+                    </li>
+                  </ul>
+                </nav>
               </div>
             </div>
           </div>
