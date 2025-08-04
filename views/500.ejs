@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head") %>
+  <body>
+    <%- include("partials/nav") %>
+    <!-- content -->
+    <main class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <% if (message){%>
+                <h1><%= message%></h1>
+                <%} else {%>
+                <h1>500. Internal Server Error.</h1>
+                <% }%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
