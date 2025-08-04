@@ -3,7 +3,7 @@ import ContactRoutes from "./routes/contact.routes.js";
 import DBConnection from "./config/database.js";
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`App is listening at ${port} port`);
 });
